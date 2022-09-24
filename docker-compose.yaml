@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web-app:
+    container_name: web-app
+    build:
+      context: ./app
+      dockerfile: Docerfile
+    tty: true
+    port:
+    - 8080:8080
+    volumes:
+    - type: bind
+      source: ./app
+      target: /app
+
+  db:
+    container_name: db
+    build:
+      context: ./mysql
+      dockerfile: Docerfile
+    tty: true
+    port:
+    - 3306:3306
+    volumes:
+    - type: bind
+      source: ./mysql/my.cnf
+      target: /etc/mysql/conf.d/my.cnf
+    - type: bind
+      source: ./mysql/db
+      target: /var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=user_database
+    - MYSQL_USER=app_user
+    - MYSQL_PASSWORD=app_password
+
+
