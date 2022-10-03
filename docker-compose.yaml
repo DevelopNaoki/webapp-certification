@@ -5,9 +5,9 @@ services:
     container_name: web-app
     build:
       context: ./app
-      dockerfile: Docerfile
+      dockerfile: Dockerfile
     tty: true
-    port:
+    ports:
     - 8080:8080
     volumes:
     - type: bind
@@ -18,10 +18,10 @@ services:
     container_name: db
     build:
       context: ./mysql
-      dockerfile: Docerfile
+      dockerfile: Dockerfile
     tty: true
-    port:
-    - 3306:3306
+    ports:
+    - 3316:3306
     volumes:
     - type: bind
       source: ./mysql/my.cnf
