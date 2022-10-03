@@ -25,4 +25,8 @@ func Router(engine *gin.Engine) {
 	engine.POST("/login", func(c *gin.Context) {
 		model.Login()
         })
+	
+	engine.GET("/*", func(c *gin.Context) {
+		c.Redirect(http.StatusSeeOther, "/login")
+	})
 }
