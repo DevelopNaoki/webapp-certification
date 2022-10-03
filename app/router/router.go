@@ -26,7 +26,7 @@ func Router(engine *gin.Engine) {
 		model.Login()
         })
 	
-	engine.GET("/*", func(c *gin.Context) {
+	engine.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusSeeOther, "/login")
 	})
 }
